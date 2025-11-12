@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Offernation — Active Offers (NG & GH)</title>
+  <meta name="description" content="Browse active Offernation offers for Nigeria and Ghana. Select your country and tap to continue." />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Offernation — Active Offers (NG & GH)"/>
+  <meta property="og:description" content="Choose your country and tap to continue"/>
+  <meta property="og:type" content="website"/>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root{
+      --ink:#0f172a;
+      --muted:#667085;
+      --card:#ffffff;
+      --bg:#f8fafc;
+      --line:#eef2f6;
+      --brand:#1e66f5; /* Offernation blue */
+      --accent:#12b981; /* success green */
+      --ng:#128807;     /* Nigeria green */
+      --gh:#f1c40f;     /* Ghana gold */
+      --cta:#0ea858;
+      --cta2:#0a7d43;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0}
+    body{
+      font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background:var(--bg);
+      color:var(--ink);
+    }
+    .wrap{
+      max-width:1100px;margin:0 auto;padding:18px;
+    }
+    header{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:16px 0 8px;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;
+    }
+    .logo{
+      width:40px;height:40px; border-radius:10px;
+      background:linear-gradient(135deg, #1e66f5, #12b981);
+      display:grid;place-items:center;color:#fff;font-weight:800;
+      box-shadow:0 8px 20px rgba(30,102,245,.2);
+    }
+    h1{font-size:20px;margin:0}
+    .sub{color:var(--muted);font-size:13px;margin-top:2px}
+    .filters{
+      display:flex;gap:8px;flex-wrap:wrap;
+    }
+    .chip{
+      padding:8px 12px;border:1px solid var(--line);border-radius:999px;background:#fff;
+      color:#0f172a;font-weight:600;font-size:13px;cursor:pointer;
+    }
+    .chip.active{border-color:var(--brand);color:var(--brand);background:#eef4ff}
+    .grid{
+      display:grid;gap:14px;margin-top:14px;
+      grid-template-columns:repeat(1, minmax(0, 1fr));
+    }
+    @media (min-width:720px){ .grid{ grid-template-columns:repeat(2, minmax(0, 1fr)); } }
+    @media (min-width:1024px){ .grid{ grid-template-columns:repeat(3, minmax(0, 1fr)); } }
+
+    .card{
+      background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+      display:flex;flex-direction:column;min-height:240px;
+      box-shadow:0 12px 28px rgba(16,23,42,.04);
+    }
+    .cardTop{
+      padding:14px 14px 8px;display:flex;align-items:center;justify-content:space-between;gap:10px;
+    }
+    .badge{
+      font-size:12px;font-weight:800;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .badge.ng{ border-color:#bfe3c6;background:#f0fff4;color:var(--ng) }
+    .badge.gh{ border-color:#ffe9a8;background:#fffcee;color:#8b5e00 }
+    .payout{font-size:12px;color:#0b7a42;background:#eafff3;border:1px solid #bff1d7;border-radius:999px;padding:6px 10px;font-weight:700}
+
+    .cardBody{padding:0 14px 12px}
+    .title{font-size:16px;font-weight:800;line-height:1.3;margin:4px 0 6px}
+    .desc{font-size:13px;color:var(--muted);line-height:1.5;margin:0 0 10px}
+    .meta{
+      display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px
+    }
+    .tag{
+      font-size:12px;color:#475467;background:#f5f7fb;border:1px solid var(--line);
+      padding:6px 8px;border-radius:8px
+    }
+    .ctaRow{padding:12px 14px 14px;margin-top:auto}
+    .btn{
+      width:100%;appearance:none;border:none;border-radius:12px;padding:12px 14px;cursor:pointer;
+      color:#fff;background:linear-gradient(135deg,var(--cta), var(--cta2));font-weight:900;letter-spacing:.2px
+    }
+    .footerNote{
+      margin-top:16px;font-size:12px;color:var(--muted);
+    }
+    .notice{
+      margin-top:14px;background:#eef4ff;border:1px solid #d9e6ff;color:#0b3aa6;
+      padding:10px 12px;border-radius:12px;font-size:12px
+    }
+    .sep{height:1px;background:var(--line);margin:12px 0}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand">
+        <div class="logo">ON</div>
+        <div>
+          <h1>Offernation — Active Offers</h1>
+          <div class="sub">Select your country offer and tap continue. Referrer preserved from Facebook.</div>
+        </div>
+      </div>
+      <div class="filters" id="filters">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="Nigeria">🇳🇬 Nigeria</button>
+        <button class="chip" data-filter="Ghana">🇬🇭 Ghana</button>
+      </div>
+    </header>
+
+    <div class="sep"></div>
+
+    <section class="grid" id="offerGrid">
+      <!-- Cards render here -->
+    </section>
+
+    <p class="footerNote">
+      Tip for Representatives: always share the Facebook Page link that points here. When users click from Facebook, the
+      network will see a facebook.com referrer, protecting your approvals.
+    </p>
+    <div class="notice">Need help? Contact Offernation Support on WhatsApp.</div>
+  </div>
+
+  <script>
+    /* =========================
+       CONFIGURE YOUR OFFERS HERE
+       ========================= */
+    const OFFERS = [
+      {
+        country: "Nigeria",
+        flag: "🇳🇬",
+        operator: "MTN",
+        title: "MTN Beta Care — Health/Consultation Service",
+        description: "Quick mobile signup for MTN users. Receive SMS login and access service instantly.",
+        tags: ["MTN", "Mobile Billing", "VAS", "Fast Signup"],
+        payout: "₦ (network: ~$0.14)",
+        /* Replace with your Nigeria offer link */
+        offerUrl: "https://www.wineisblue.support/click?offer_id=34331&pub_id=278557&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE"
+      },
+      {
+        country: "Ghana",
+        flag: "🇬🇭",
+        operator: "MTN",
+        title: "Popular Afro Hits - MTN - 2 click",
+        description: "Clean smartlink for top converting verticals. Auto-routes to best offer for device and carrier.",
+        tags: ["Smartlink", "Mainstream", "Auto-Route", "High CTR"],
+        payout: "$0.80 — $1.0 (typ.)",
+        /* Replace with your Ghana offer link */
+        offerUrl: "https://www.wineisblue.support/click?offer_id=30748&pub_id=278557&pub_click_id=ADD_CLICK_ID_HERE&site=PASS_SITE_HERE"
+      }
+    ];
+
+    /* ============
+       RENDER CARDS
+       ============ */
+    const grid = document.getElementById('offerGrid');
+    function render(filter = "all"){
+      grid.innerHTML = "";
+      OFFERS.filter(o => filter==="all" ? true : o.country===filter)
+            .forEach(o => {
+        const card = document.createElement('article');
+        card.className = "card";
+        const badgeClass = o.country==="Nigeria" ? "badge ng" : "badge gh";
+        card.innerHTML = 
+          <div class="cardTop">
+            <span class="${badgeClass}">
+              <span>${o.flag}</span>
+              <strong>${o.country}</strong>
+            </span>
+            <span class="payout">Payout: ${o.payout}</span>
+          </div>
+          <div class="cardBody">
+            <div class="title">${o.title}</div>
+            <p class="desc">${o.description}</p>
+            <div class="meta">
+              ${o.tags.map(t=><span class="tag">${t}</span>).join("")}
+            </div>
+          </div>
+          <div class="ctaRow">
+            <button class="btn" data-url="${o.offerUrl}">Continue</button>
+          </div>
+        ;
+        grid.appendChild(card);
+      });
+    }
+    render();  
+/* ============================
+       FILTER BUTTON INTERACTIONS
+       ============================ */
+    document.getElementById('filters').addEventListener('click', (e)=>{
+      const b = e.target.closest('button[data-filter]');
+      if(!b) return;
+      [...document.querySelectorAll('.chip')].forEach(ch=>ch.classList.remove('active'));
+      b.classList.add('active');
+      render(b.dataset.filter);
+      attachClicks(); // rebind
+    });
+
+    /* ========================================
+       PASS THROUGH fbclid/utm TO OFFER LINKS
+       ======================================== */
+    const passthroughKeys = ["fbclid","utm_source","utm_medium","utm_campaign","utm_term","utm_content"];
+    const urlParams = new URLSearchParams(location.search);
+    function appendPassthrough(base){
+      try{
+        const u = new URL(base);
+        passthroughKeys.forEach(k=>{
+          if(urlParams.has(k)) u.searchParams.set(k, urlParams.get(k));
+        });
+        // Optional: stamp source hint for your own analytics
+        if (document.referrer) u.searchParams.set("ref_hint", "facebook_landing");
+        return u.toString();
+      }catch(_){ return base; }
+    }
+
+    /* ===========================
+       BIND CTA CLICKS (NEW TAB)
+       =========================== */
+    function attachClicks(){
+      document.querySelectorAll('.btn[data-url]').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const raw = btn.getAttribute('data-url');
+          const final = appendPassthrough(raw);
+          // Open in new tab; Facebook will still be referrer for this page
+          window.open(final, '_blank', 'noopener,noreferrer');
+        });
+      });
+    }
+    attachClicks();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+    
+    
+
+  
+
+
+
+
+
+
+
+
+    
+
+    
